@@ -1,6 +1,10 @@
 import { Icon } from '../svg';
+import { useCardStore } from '../store/useCardStore';
+import { formatCardNumber } from '../util';
 
 const Header = () => {
+  const { cardHolder, cardNumber, expMonth, expYear, cvc } = useCardStore();
+
   return (
     <header className='header'>
       <h1 className='sr-only'>Card Details</h1>
@@ -13,7 +17,7 @@ const Header = () => {
             alt=''
           />
           <div className='card__back-text'>
-            <div className='card__cvc'>000</div>
+            <div className='card__cvc'>{cvc}</div>
           </div>
         </div>
         <div className='card__front'>
@@ -27,10 +31,12 @@ const Header = () => {
             <div className='card__logo'>
               <Icon name='card-logo' />
             </div>
-            <div className='card__number'>0000 0000 0000 0000</div>
+            <div className='card__number'>{formatCardNumber(cardNumber)}</div>
             <div className='card__details'>
-              <div className='card__holder'>JANE APPLESEED</div>
-              <div className='card__expiry'>09/00</div>
+              <div className='card__holder'>{cardHolder}</div>
+              <div className='card__expiry'>
+                {expMonth}/{expYear}
+              </div>
             </div>
           </div>
         </div>
