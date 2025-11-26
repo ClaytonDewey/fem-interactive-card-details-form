@@ -1,11 +1,29 @@
 @use '../util' as *;
 
 .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(40);
+  width: 100%;
+  max-width: rem(345);
+
   &-group {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: rem(8);
+  }
+
+  &-group-fieldset {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: rem(24);
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
   }
 
   &-label {

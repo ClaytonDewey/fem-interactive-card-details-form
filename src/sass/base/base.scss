@@ -25,6 +25,15 @@ body {
   position: relative;
 }
 
+.app {
+  @include breakpoint(desktop) {
+    display: flex;
+    align-items: center;
+    gap: rem(349);
+    height: 100vh;
+  }
+}
+
 .sr-only {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
