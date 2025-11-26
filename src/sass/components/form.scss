@@ -1,0 +1,42 @@
+@use '../util' as *;
+
+.form {
+  &-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: rem(8);
+  }
+
+  &-label {
+    text-transform: uppercase;
+    color: var(--clr-gray-950);
+    font: var(--text-preset-5);
+    letter-spacing: var(--text-preset-5-ls);
+  }
+
+  &-control {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: rem(1) solid var(--clr-gray-200);
+    color: var(--clr-gray-950);
+    height: rem(45);
+    border-radius: rem(8);
+    padding-inline: rem(16);
+
+    &.is-invalid {
+      border-color: var(--clr-red-400);
+    }
+
+    &::placeholder {
+      font: var(--text-preset-3);
+      color: var(--clr-gray-950);
+      opacity: 0.25;
+    }
+
+    &:focus {
+      border-color: var(--clr-border-focus);
+    }
+  }
+}

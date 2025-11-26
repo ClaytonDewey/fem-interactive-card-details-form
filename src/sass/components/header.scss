@@ -1,0 +1,105 @@
+@use '../util' as *;
+
+.header {
+  background-image: url('../../../public/images/bg-main-mobile.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  height: rem(240);
+  padding-block-start: rem(32);
+  padding-inline: rem(16);
+
+  @include breakpoint(tablet) {
+    background-size: cover;
+    height: rem(308);
+    padding-inline: rem(112);
+  }
+}
+
+.card {
+  position: relative;
+
+  &__logo {
+    svg {
+      width: rem(51.77);
+      height: rem(30);
+      margin-bottom: rem(24);
+    }
+
+    @include breakpoint(tablet) {
+      svg {
+        width: rem(84.09);
+        height: rem(47);
+      }
+    }
+  }
+
+  &__number {
+    font: var(--text-preset-2);
+    letter-spacing: var(--text-preset-2-ls);
+  }
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: var(--text-preset-7);
+    letter-spacing: var(--text-preset-7-ls);
+  }
+
+  &__front,
+  &__back {
+    position: absolute;
+
+    &-img {
+      width: rem(285);
+
+      @include breakpoint(tablet) {
+        width: rem(543);
+      }
+    }
+  }
+
+  &__back {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &-text {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--clr-white);
+      right: rem(32);
+      font: var(--text-preset-7);
+      letter-spacing: var(--text-preset-7-ls);
+    }
+  }
+
+  &__front {
+    position: absolute;
+    top: rem(94);
+    left: rem(0);
+    z-index: 2;
+
+    &-text {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: rem(16);
+      padding: rem(15) rem(18);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      color: var(--clr-white);
+    }
+
+    @include breakpoint(tablet) {
+      top: rem(139);
+
+      &-text {
+        padding: rem(24) rem(32);
+      }
+    }
+  }
+}

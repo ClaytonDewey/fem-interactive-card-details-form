@@ -1,0 +1,48 @@
+@use '../util' as *;
+
+:root {
+  // Neutral colors
+  --clr-white: #ffffff;
+  --clr-black: #000000;
+  --clr-gray-950: #2f2f2f;
+  --crl-gray-400: #adb5be;
+  --clr-gray-200: #dfdee0;
+
+  // Primary colors
+  --clr-purple-950: #21092f;
+  --clr-purple-500: #d53aff;
+  --clr-orange-400: #ff834a;
+  --crl-blue-400: #47a2ff;
+  --clr-red-400: #ff5050;
+
+  // Border Color
+  --clr-border-focus: #6348fe;
+
+  // Gradients
+  --gradient-gray: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(210, 211, 217, 1) 100%
+  );
+  --gradient-purple: linear-gradient(
+    180deg,
+    rgba(99, 72, 254, 1) 0%,
+    rgba(97, 5, 149, 1) 100%
+  );
+
+  // Typography
+  --ff-primary: 'Space Grotesk', sans-serif;
+
+  --text-preset-1: normal normal 500 #{rem(28)} / 130% var(--ff-primary);
+  --text-preset-1-ls: #{rem(3.5)};
+  --text-preset-2: normal normal 500 #{rem(18)} / 130% var(--ff-primary);
+  --text-preset-2-ls: #{rem(2.5)};
+  --text-preset-3: normal normal 500 #{rem(18)} / 130% var(--ff-primary);
+  --text-preset-4: normal normal 500 #{rem(14)} / 130% var(--ff-primary);
+  --text-preset-4-ls: #{rem(2)};
+  --text-preset-5: normal normal 500 #{rem(12)} / 125% var(--ff-primary);
+  --text-preset-5-ls: #{rem(2)};
+  --text-preset-6: normal normal 500 #{rem(12)} / 125% var(--ff-primary);
+  --text-preset-7: normal normal 500 #{rem(9)} / 125% var(--ff-primary);
+  --text-preset-7-ls: #{rem(1.25)};
+}
