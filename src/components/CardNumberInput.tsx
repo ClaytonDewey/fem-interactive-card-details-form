@@ -15,7 +15,7 @@ const CardNumberInput = () => {
   ) => {
     const value = event.target.value;
     setCcCardNumber(value);
-    setCardNumber(value);
+    setCardNumber(formatCardNumber(value));
 
     // Perform validation
     const { isValid: formatValid, cardType: detectedCardType } =
@@ -40,12 +40,12 @@ const CardNumberInput = () => {
         className='form-control'
         type='text'
         id='cardNumber'
-        value={formatCardNumber(cccardNumber)}
+        value={cccardNumber}
         onChange={handleCardNumberChange}
         placeholder='e.g. 1234 5678 9123 0000'
       />
       {cardType && <p>Card Type: {cardType}</p>}
-      {validationError && <p style={{ color: 'red' }}>{validationError}</p>}
+      {validationError && <p className='form-error'>{validationError}</p>}
     </div>
   );
 };

@@ -16,6 +16,11 @@ legend {
   align-items: center;
   gap: rem(40);
   max-width: rem(383);
+  &-error {
+    color: var(--error);
+    font: var(--text-preset-6);
+    font-weight: 500;
+  }
 
   &-group {
     display: flex;
