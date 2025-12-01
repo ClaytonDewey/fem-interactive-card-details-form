@@ -1,18 +1,49 @@
 @use '../util' as *;
 
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+legend {
+  margin-block-end: rem(8);
+}
+
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: rem(40);
-  width: 100%;
-  max-width: rem(345);
+  max-width: rem(383);
 
   &-group {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: rem(8);
+    flex: 0 0 auto;
+
+    &:has(.date) {
+      width: rem(168);
+      flex-direction: row;
+
+      .date {
+        width: rem(46);
+      }
+    }
+
+    &:has(.cvc) {
+      width: rem(191);
+    }
+
+    &-inline {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: rem(24);
+    }
   }
 
   &-group-fieldset {

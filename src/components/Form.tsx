@@ -1,13 +1,18 @@
-import { useState } from 'react';
-import { Input, Button } from '.';
+import { useState, useRef } from 'react';
+import { Input, Button, CardNumberInput } from '.';
 import { useCardStore } from '../store/useCardStore';
-import { formatCardNumber } from '../util';
 
 const Form = () => {
   const [cardHolderName, setCardHolderName] = useState('');
-  const [cccardNumber, setCcCardNumber] = useState('');
 
-  const { setCardHolder, setCardNumber } = useCardStore();
+  const monthInputRef = useRef<HTMLInputElement>(null);
+  const yearInputRef = useRef<HTMLInputElement>(null);
+  const [month, setMonth] = useState<string>('');
+  const [year, setYear] = useState<string>('');
+  const [cvcNum, setCvcNum] = useState<string>('');
+
+  const { setCardHolder, setCardNumber, setExpMonth, setExpYear, setCvc } =
+    useCardStore();
 
   const handleCardHolderNameChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -16,16 +21,34 @@ const Form = () => {
     setCardHolder(e.target.value);
   };
 
-  const handleCcCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\s/g, ''); // Remove spaces
-    setCcCardNumber(value);
-    setCardNumber(value);
+  const handleMonthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 2); // Allow only digits, max 2 chars
+    setMonth(value);
+    setExpMonth(value);
+
+    if (value.length === 2 && yearInputRef.current) {
+      yearInputRef.current.focus();
+    }
+  };
+
+  const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 2); // Allow only digits, max 2 chars
+    setYear(value);
+    setExpYear(value);
+  };
+
+  const handleCvcChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 4); // Allow only digits, max 4 chars
+    setCvcNum(value);
+    setCvc(value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setCardHolder(cardHolderName);
-    setCardNumber(cccardNumber);
+    setExpMonth(month);
+    setExpYear(year);
+    setCvc(cvcNum);
   };
 
   return (
@@ -44,17 +67,52 @@ const Form = () => {
           />
         </div>
 
-        <div className='form-group'>
-          <label htmlFor='cardholder-name'>Card Number</label>
-          <Input
-            id='cardholder-name'
-            className='form-control'
-            type='text'
-            value={formatCardNumber(cccardNumber)}
-            onChange={handleCcCardNumberChange}
-            placeholder='e.g. 1234 5678 9123 0000'
-            maxLength={19}
-          />
+        <CardNumberInput />
+
+        <div className='form-group-inline'>
+          <fieldset>
+            <legend>Exp. Date (MM/YY)</legend>
+            <div className='form-group'>
+              <label htmlFor='expiryMonth' className='sr-only'>
+                Month
+              </label>
+              <input
+                className='form-control date'
+                id='expiryMonth'
+                type='text'
+                placeholder='MM'
+                maxLength={2}
+                value={month}
+                onChange={handleMonthChange}
+                ref={monthInputRef}
+              />
+              <label htmlFor='expiryYear' className='sr-only'>
+                Year
+              </label>
+              <input
+                className='form-control date'
+                id='expiryYear'
+                type='text'
+                placeholder='YY'
+                maxLength={2}
+                value={year}
+                onChange={handleYearChange}
+                ref={yearInputRef}
+              />
+            </div>
+          </fieldset>
+          <div className='form-group'>
+            <label htmlFor='cvc'>CVC</label>
+            <Input
+              id='cvc'
+              className='form-control cvc'
+              type='text'
+              value={cvcNum}
+              onChange={handleCvcChange}
+              placeholder='e.g. 123'
+              maxLength={4}
+            />
+          </div>
         </div>
       </fieldset>
       <Button type='submit' className='btn btn-primary'>
