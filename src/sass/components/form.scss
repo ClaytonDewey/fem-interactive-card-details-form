@@ -16,6 +16,7 @@ legend {
   align-items: center;
   gap: rem(40);
   max-width: rem(383);
+
   &-error {
     color: var(--error);
     font: var(--text-preset-6);
@@ -92,6 +93,29 @@ legend {
     &:focus {
       border-color: var(--clr-border-focus);
     }
+  }
+
+  &-complete {
+    width: 100%;
+    max-width: 381px;
+    text-align: center;
+
+    h2 {
+      margin-block-end: rem(24);
+      font: var(--text-preset-1);
+      line-height: var(--text-preset-1-lh);
+      text-transform: uppercase;
+    }
+
+    p {
+      color: var(--clr-gray-400);
+      font: var(--text-preset-3);
+      margin-block-end: rem(48);
+    }
+  }
+
+  &-icon {
+    margin-block-end: rem(32);
   }
 }
 

@@ -1,7 +1,7 @@
-import { CardLogo, IconComplete } from '.';
+import { CardLogo, IconComplete, IconInfo } from '.';
 
 type IconProps = {
-  name: 'card-logo' | 'complete';
+  name: 'card-logo' | 'complete' | 'info';
 };
 
 const Icon = ({ name }: IconProps) => {
@@ -10,6 +10,8 @@ const Icon = ({ name }: IconProps) => {
       return <CardLogo />;
     case 'complete':
       return <IconComplete />;
+    case 'info':
+      return <IconInfo />;
     default:
       return null;
   }
